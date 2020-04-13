@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Productos{% endblock %}
+{% block bodyClass %}nav-md{% endblock %}
+
+{% block pagecontent %}
+    <div class="col-md-12 col-sm-12  ">
+        <div class="x_panel">
+            <div class="x_content">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>idmanufacturer</th>
+                            <th>idcategorydefault</th>
+                            <th>name</th>
+                            <th>reference</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        {# sorting of properties based on query components
+                        <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
+                        <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>
+                            {{ knp_pagination_sortable(pagination, 'Title', 'a.title') }}
+                        </th>
+                        <th{% if pagination.isSorted(['a.date', 'a.time']) %} class="sorted"{% endif %}>
+                            {{ knp_pagination_sortable(pagination, 'Release', ['a.date', 'a.time']) }}
+                        </th>
+                        #}
+                    </tr>
+                    <tbody>
+                        {# table body #}
+                        {% for product in pagination %}
+                            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                                <td>{{ product.id }}</td>
+                                <td>{{ product.idmanufacturer }}</td>
+                                <td>{{ product.idcategorydefault }}</td>
+                                <td>{{ product.name }}</td>
+                                <td>{{ product.reference }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+                {# display navigation #}
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

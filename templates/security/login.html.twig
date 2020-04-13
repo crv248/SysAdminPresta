@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+{% block bodyClass %}login{% endblock %}
+
+{% block body %}
+    <div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+
+        <div class="login_wrapper">
+            <div class="animate form login_form">
+                <section class="login_content">
+                    <form method="post">
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+                        <h1>Login Form</h1>
+                        <div>
+                            <input type="text" value="{{ last_username }}" class="form-control" placeholder="Email" required="" name="email" id="inputEmail"/>
+                        </div>
+                        <div>
+                            <input type="password" class="form-control" placeholder="Password" required="" name="password" id="inputPassword" />
+                        </div>
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}"
+                        >
+                        <button class="btn btn-default submit" type="submit">
+                            Sign in
+                        </button>
+
+
+                        <div class="separator">
+
+                            <div class="clearfix"></div>
+                            <br />
+
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}
